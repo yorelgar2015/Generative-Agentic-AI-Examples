@@ -1,0 +1,10 @@
+
+langgraph==0.2.55
+langchain==0.3.14
+langchain-core==0.3.29
+langchain-openai==0.2.14
+langchain-community==0.3.14
+grandalf==0.8
+pandas==2.2.2
+numpy==2.0.2
+streamlit==1.42.2
