@@ -23,11 +23,16 @@ st.set_page_config(
 
 
 # Load the JSON file and extract values
-file_name = 'config.json'
-with open(file_name, 'r') as file:
-    config = json.load(file)
-    OPENAI_API_KEY = config.get("OPENAI_API_KEY") # Loading the API Key
-    OPENAI_API_BASE = config.get("OPENAI_API_BASE") # Loading the API Base Url
+# Check Streamlit secrets first, fallback to json if running locally
+if "OPENAI_API_KEY" in st.secrets:
+    OPENAI_API_KEY = st.secrets["OPENAI_API_KEY"]
+    OPENAI_API_BASE = st.secrets["OPENAI_API_BASE"]
+else:
+    file_name = 'config.json'
+    with open(file_name, 'r') as file:
+        config = json.load(file)
+        OPENAI_API_KEY = config.get("OPENAI_API_KEY")
+        OPENAI_API_BASE = config.get("OPENAI_API_BASE")
 
 
 # Storing API credentials in environment variables
